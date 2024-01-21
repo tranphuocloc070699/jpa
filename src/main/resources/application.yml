@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: "jpa-server"
+  profiles:
+    active: "default"
+  main:
+    web-application-type: servlet
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jpa
+    username: loctran
+    password: Loc123456
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      format-sql: true
+    show-sql: false
