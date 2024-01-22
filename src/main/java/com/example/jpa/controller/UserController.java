@@ -5,12 +5,11 @@ import com.example.jpa.dto.ResponseDto;
 import com.example.jpa.dto.UserDto;
 import com.example.jpa.model.User;
 import com.example.jpa.service.UserService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,15 +58,15 @@ public class UserController {
   }
 
 
-@PostMapping(value = "",consumes = MediaType.APPLICATION_JSON_VALUE)
+@PostMapping("")
 public Object createEntity(@RequestBody UserDto dto) {
   System.out.println(dto.getFirstName());
-//  User entity= service.createEntity(dto);
+  User entity= service.createEntity(dto);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
       .status(HttpStatus.CREATED)
       .path(httpServletRequest.getContextPath())
-      .data(null)
+      .data(entity)
       .errors(null)
       .message("Process Successfully!")
       .build();
