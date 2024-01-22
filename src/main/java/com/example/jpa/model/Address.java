@@ -3,14 +3,15 @@ package com.example.jpa.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_address")
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,23 +19,18 @@ import java.util.List;
 @JsonIdentityInfo(
     generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id")
-public class User {
+
+public class Address {
   @Id
-  @GeneratedValue
-//  @GeneratedValue(strategy = GenerationType.UUID)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
   private Integer id;
 
   @Column
-  private String firstName;
+  private String location;
 
   @Column
-  private String lastName;
-
-  @Column
-  private Integer age;
-
-  @Column
-  private Boolean isAdult;
+  private String content;
 
   @Column
   private LocalDateTime createdAt;
@@ -53,11 +49,6 @@ public class User {
   }
 
 
-  @OneToMany(mappedBy = "user")
-  private List<Post> posts;
-
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "address_id", referencedColumnName = "id")
-  private Address address;
-
+  @OneToOne(mappedBy = "address")
+  private User user;
 }

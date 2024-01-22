@@ -15,7 +15,7 @@ public class PostMapper {
   public static Post mapToEntity(Post entity,PostDto dto) {
 
     entity.setTitle(dto.getTitle());
-    entity.setTitle(dto.getTitle());
+    entity.setContent(dto.getContent());
     return entity;
   }
 }

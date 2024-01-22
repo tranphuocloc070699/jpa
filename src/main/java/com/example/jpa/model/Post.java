@@ -1,6 +1,7 @@
 package com.example.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 @JsonIdentityInfo(
     generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id")
+
 public class Post {
   @Id
   @GeneratedValue
@@ -35,7 +37,18 @@ public class Post {
   @Column
   private LocalDateTime updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @PrePersist
+  protected void onCreate() {
+    createdAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate(){
+    updatedAt = LocalDateTime.now();
+  }
+
+
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name="user_id")
   private User user;
 }
