@@ -11,8 +11,8 @@ public class UserMapper {
      dto.setLastName(entity.getLastName());
      dto.setAge(entity.getAge());
      dto.setIsAdult(entity.getIsAdult());
-     dto.setCreatedAt(entity.getCreatedAt());
-     dto.setUpdatedAt(entity.getUpdatedAt());
+   /*  dto.setCreatedAt(entity.getCreatedAt());
+     dto.setUpdatedAt(entity.getUpdatedAt());*/
      return dto;
   }
 
@@ -22,8 +22,8 @@ public class UserMapper {
     entity.setLastName(dto.getLastName());
     entity.setAge(dto.getAge());
     entity.setIsAdult(dto.getIsAdult());
-    entity.setCreatedAt(dto.getCreatedAt());
-    entity.setUpdatedAt(dto.getUpdatedAt());
+    /*entity.setCreatedAt(dto.getCreatedAt());
+    entity.setUpdatedAt(dto.getUpdatedAt());*/
     return entity;
   }
 }

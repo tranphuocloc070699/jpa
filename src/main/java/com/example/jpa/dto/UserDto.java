@@ -15,6 +15,5 @@ public class UserDto {
   private String lastName;
   private Integer age;
   private Boolean isAdult;
-  private LocalDateTime createdAt;
-  private LocalDateTime updatedAt;
+
 }
