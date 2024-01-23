@@ -24,8 +24,9 @@ public class AddressService {
     User user = userDataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     Address entity = Address.builder().build();
     AddressMapper.mapToEntity(entity, dto);
-    entity.setUser(user);
+    user.setAddress(entity);
 
+//    entity.setUser(user);
     return dataAccess.save(entity);
   }
 

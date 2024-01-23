@@ -3,15 +3,13 @@ package com.example.jpa.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "tbl_address")
+@Table(name = "tbl_course")
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,15 +17,13 @@ import java.time.LocalDateTime;
 @JsonIdentityInfo(
     generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id")
-
-public class Address {
+public class Course {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id")
+  @GeneratedValue
   private Integer id;
 
   @Column
-  private String location;
+  private String name;
 
   @Column
   private LocalDateTime createdAt;
@@ -45,7 +41,14 @@ public class Address {
     updatedAt = LocalDateTime.now();
   }
 
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  @JoinTable(name = "course_user", //Tạo ra một join Table tên là "address_person"
+      joinColumns = @JoinColumn(name = "course_id"),  // TRong đó, khóa ngoại chính là address_id trỏ tới class hiện tại (Address)
+      inverseJoinColumns = @JoinColumn(name = "user_id") //Khóa ngoại thứ 2 trỏ tới thuộc tính ở dưới (Person)
+  )
+  private List<User> users;
 
-  @OneToOne(mappedBy = "address")
-  private User user;
+
 }

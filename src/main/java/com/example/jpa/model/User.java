@@ -60,4 +60,9 @@ public class User {
   @JoinColumn(name = "address_id", referencedColumnName = "id")
   private Address address;
 
+  @ManyToMany(mappedBy = "users")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  private List<Course> courses;
+
 }
