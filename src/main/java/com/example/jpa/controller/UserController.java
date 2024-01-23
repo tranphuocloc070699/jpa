@@ -44,7 +44,7 @@ public class UserController {
   }
 
   @GetMapping("{id}")
-  public Object fetchDetails(@RequestParam(value = "id") Integer id) {
+  public Object fetchDetails(@RequestParam(value = "id") Long id) {
     User entity = service.fetchEntity(id);
     ResponseDto responseDto = ResponseDto.builder()
         .timestamp(new Date())
@@ -73,7 +73,7 @@ public Object createEntity(@RequestBody UserDto dto) {
 }
 
 @PutMapping("{id}")
-public Object update(@PathVariable("id")Integer id,@RequestBody UserDto dto) {
+public Object update(@PathVariable("id")Long id,@RequestBody UserDto dto) {
   User entity= service.updateEntity(dto,id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
@@ -87,7 +87,7 @@ public Object update(@PathVariable("id")Integer id,@RequestBody UserDto dto) {
 }
 
 @DeleteMapping("{id}")
-public Object delete(@PathVariable("id") Integer id) {
+public Object delete(@PathVariable("id") Long id) {
   User entity = service.deleteEntity(id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())

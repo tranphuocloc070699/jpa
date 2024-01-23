@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class PostService {
   private final PostDataAccess dataAccess;
   private final UserDataAccess userDataAccess;
-  public Post createEntity(Integer id,PostDto dto) {
+  public Post createEntity(Long id,PostDto dto) {
     User user = userDataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     Post entity = Post.builder().build();
     PostMapper.mapToEntity(entity, dto);
@@ -40,12 +40,12 @@ public class PostService {
     return dataAccess.findAll(pageable);
   }
 
-  public Post fetchEntity(Integer id) {
+  public Post fetchEntity(Long id) {
     return dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","Id",id.toString()));
   }
 
 
-  public Post updateEntity(PostDto dto,Integer id) {
+  public Post updateEntity(PostDto dto,Long id) {
     boolean isUpdated = false;
     Post modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","Id",id.toString()));
     if (!modelExisted.getTitle().equals(dto.getTitle())) {
@@ -63,7 +63,7 @@ public class PostService {
   }
 
 
-  public Post deleteEntity(Integer id) {
+  public Post deleteEntity(Long id) {
     Post modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","Id",id.toString()));
     dataAccess.delete(id);
     return modelExisted;

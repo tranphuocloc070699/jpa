@@ -43,7 +43,7 @@ public class AddressController {
   }
 
   @GetMapping("{id}")
-  public Object fetchDetails(@RequestParam(value = "id") Integer id) {
+  public Object fetchDetails(@RequestParam(value = "id") Long id) {
     Address entity = service.fetchEntity(id);
     ResponseDto responseDto = ResponseDto.builder()
         .timestamp(new Date())
@@ -58,7 +58,7 @@ public class AddressController {
 
 
 @PostMapping("users/{id}")
-public Object createEntity(@PathVariable("id") Integer id,@RequestBody AddressDto dto) {
+public Object createEntity(@PathVariable("id") Long id,@RequestBody AddressDto dto) {
   Address entity= service.createEntity(id,dto);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
@@ -72,7 +72,7 @@ public Object createEntity(@PathVariable("id") Integer id,@RequestBody AddressDt
 }
 
 @PutMapping("{id}")
-public Object update(@PathVariable("id")Integer id,@RequestBody AddressDto dto) {
+public Object update(@PathVariable("id")Long id,@RequestBody AddressDto dto) {
   Address entity= service.updateEntity(dto,id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
@@ -86,7 +86,7 @@ public Object update(@PathVariable("id")Integer id,@RequestBody AddressDto dto) 
 }
 
 @DeleteMapping("{id}")
-public Object delete(@PathVariable("id") Integer id) {
+public Object delete(@PathVariable("id") Long id) {
   Address entity = service.deleteEntity(id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())

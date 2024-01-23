@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CourseDataAccess {
   private final CourseRepository repository;
 
-  public Optional<Course> findById(Integer id) {
+  public Optional<Course> findById(Long id) {
     return repository.findById(id);
   }
 
@@ -25,7 +25,7 @@ public class CourseDataAccess {
     return repository.findAll(pageable);
   }
 
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 }

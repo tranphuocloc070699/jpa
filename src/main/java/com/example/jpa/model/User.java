@@ -22,7 +22,7 @@ public class User {
   @Id
   @GeneratedValue
 //  @GeneratedValue(strategy = GenerationType.UUID)
-  private Integer id;
+  private Long id;
 
   @Column
   private String firstName;

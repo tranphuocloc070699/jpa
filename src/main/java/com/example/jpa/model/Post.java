@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 public class Post {
   @Id
   @GeneratedValue
-  private Integer id;
+  private Long id;
 
   @Column
   private String title;

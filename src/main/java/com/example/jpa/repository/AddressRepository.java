@@ -4,5 +4,5 @@ import com.example.jpa.model.Address;
 import com.example.jpa.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AddressRepository extends JpaRepository<Address,Integer> {
+public interface AddressRepository extends JpaRepository<Address,Long> {
 }

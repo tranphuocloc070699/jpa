@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class AddressService {
   private final AddressDataAccess dataAccess;
   private final UserDataAccess userDataAccess;
-  public Address createEntity(Integer id,AddressDto dto) {
+  public Address createEntity(Long id,AddressDto dto) {
     User user = userDataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     Address entity = Address.builder().build();
     AddressMapper.mapToEntity(entity, dto);
@@ -41,12 +41,12 @@ public class AddressService {
     return dataAccess.findAll(pageable);
   }
 
-  public Address fetchEntity(Integer id) {
+  public Address fetchEntity(Long id) {
     return dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address","Id",id.toString()));
   }
 
 
-  public Address updateEntity(AddressDto dto,Integer id) {
+  public Address updateEntity(AddressDto dto,Long id) {
     boolean isUpdated = false;
     Address modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address","Id",id.toString()));
     if (!modelExisted.getLocation().equals(dto.getLocation())) {
@@ -61,7 +61,7 @@ public class AddressService {
   }
 
 
-  public Address deleteEntity(Integer id) {
+  public Address deleteEntity(Long id) {
     Address modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address","Id",id.toString()));
     dataAccess.delete(id);
     return modelExisted;

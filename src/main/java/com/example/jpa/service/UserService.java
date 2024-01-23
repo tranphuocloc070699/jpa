@@ -39,12 +39,12 @@ public class UserService {
   }
 
 
-  public User fetchEntity(Integer id) {
+  public User fetchEntity(Long id) {
     return dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
   }
 
 
-  public User updateEntity(UserDto dto,Integer id) {
+  public User updateEntity(UserDto dto,Long id) {
     boolean isUpdated = false;
     User modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     if (!modelExisted.getFirstName().equals(dto.getFirstName())) {
@@ -69,7 +69,7 @@ public class UserService {
   }
 
 
-  public User deleteEntity(Integer id) {
+  public User deleteEntity(Long id) {
     User modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","Id",id.toString()));
     dataAccess.delete(id);
     return modelExisted;

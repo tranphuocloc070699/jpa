@@ -22,7 +22,7 @@ import java.util.List;
 public class CourseService {
   private final CourseDataAccess dataAccess;
   private final UserDataAccess userDataAccess;
-  public Course createEntity(Integer id,CourseDto dto) {
+  public Course createEntity(CourseDto dto) {
     Course entity = Course.builder().build();
     CourseMapper.mapToEntity(entity, dto);
     return dataAccess.save(entity);
@@ -39,12 +39,12 @@ public class CourseService {
     return dataAccess.findAll(pageable);
   }
 
-  public Course fetchEntity(Integer id) {
+  public Course fetchEntity(Long id) {
     return dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course","Id",id.toString()));
   }
 
 
-  public Course updateEntity(CourseDto dto,Integer id) {
+  public Course updateEntity(CourseDto dto,Long id) {
     boolean isUpdated = false;
     Course modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course","Id",id.toString()));
     if (!modelExisted.getName().equals(dto.getName())) {
@@ -56,7 +56,7 @@ public class CourseService {
     return modelExisted;
   }
 
-  public Course addUser(Integer id,Integer userId) {
+  public Course addUser(Long id,Long userId) {
     Course modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course","Id",id.toString()));
     User userExisted = userDataAccess.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     modelExisted.getUsers().add(userExisted);
@@ -65,7 +65,7 @@ public class CourseService {
     return modelExisted;
   }
 
-  public Course removeUser(Integer id,Integer userId) {
+  public Course removeUser(Long id,Long userId) {
     Course modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course","Id",id.toString()));
     User userExisted = userDataAccess.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     modelExisted.getUsers().remove(userExisted);
@@ -75,7 +75,7 @@ public class CourseService {
   }
 
 
-  public Course deleteEntity(Integer id) {
+  public Course deleteEntity(Long id) {
     Course modelExisted = dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course","Id",id.toString()));
     dataAccess.delete(id);
     return modelExisted;

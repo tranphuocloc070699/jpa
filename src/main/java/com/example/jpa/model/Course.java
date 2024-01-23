@@ -20,7 +20,7 @@ import java.util.List;
 public class Course {
   @Id
   @GeneratedValue
-  private Integer id;
+  private Long id;
 
   @Column
   private String name;

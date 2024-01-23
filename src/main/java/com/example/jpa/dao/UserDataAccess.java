@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserDataAccess {
   private final UserRepository repository;
 
-  public Optional<User> findById(Integer id) {
+  public Optional<User> findById(Long id) {
     return repository.findById(id);
   }
 
@@ -26,7 +26,7 @@ public class UserDataAccess {
     return repository.findAll(pageable);
   }
 
-  public void delete(Integer id) {
+  public void delete(Long id) {
      repository.deleteById(id);
   }
 }

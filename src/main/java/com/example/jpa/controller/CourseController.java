@@ -43,7 +43,7 @@ public class CourseController {
   }
 
   @GetMapping("{id}")
-  public Object fetchDetails(@RequestParam(value = "id") Integer id) {
+  public Object fetchDetails(@RequestParam(value = "id") Long id) {
     Course entity = service.fetchEntity(id);
     ResponseDto responseDto = ResponseDto.builder()
         .timestamp(new Date())
@@ -57,9 +57,9 @@ public class CourseController {
   }
 
 
-@PostMapping("users/{id}")
-public Object createEntity(@PathVariable("id") Integer id,@RequestBody CourseDto dto) {
-  Course entity= service.createEntity(id,dto);
+@PostMapping("")
+public Object createEntity(@RequestBody CourseDto dto) {
+  Course entity= service.createEntity(dto);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
       .status(HttpStatus.CREATED)
@@ -72,7 +72,7 @@ public Object createEntity(@PathVariable("id") Integer id,@RequestBody CourseDto
 }
 
 @PutMapping("{id}")
-public Object update(@PathVariable("id")Integer id,@RequestBody CourseDto dto) {
+public Object update(@PathVariable("id")Long id,@RequestBody CourseDto dto) {
   Course entity= service.updateEntity(dto,id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())
@@ -86,8 +86,8 @@ public Object update(@PathVariable("id")Integer id,@RequestBody CourseDto dto) {
 }
 
   @PatchMapping("/add/{id}")
-  public Object addUser(@PathVariable("id")Integer id,@RequestParam("userId") String userId) {
-    Course entity= service.addUser(id,Integer.parseInt(userId));
+  public Object addUser(@PathVariable("id")Long id,@RequestParam("userId") String userId) {
+    Course entity= service.addUser(id,Long.parseLong(userId));
     ResponseDto responseDto = ResponseDto.builder()
         .timestamp(new Date())
         .status(HttpStatus.OK)
@@ -100,8 +100,8 @@ public Object update(@PathVariable("id")Integer id,@RequestBody CourseDto dto) {
   }
 
   @PatchMapping("/remove/{id}")
-  public Object removeUser(@PathVariable("id")Integer id,@RequestParam("userId") String userId) {
-    Course entity= service.removeUser(id,Integer.parseInt(userId));
+  public Object removeUser(@PathVariable("id")Long id,@RequestParam("userId") String userId) {
+    Course entity= service.removeUser(id,Long.parseLong(userId));
     ResponseDto responseDto = ResponseDto.builder()
         .timestamp(new Date())
         .status(HttpStatus.OK)
@@ -115,7 +115,7 @@ public Object update(@PathVariable("id")Integer id,@RequestBody CourseDto dto) {
 
 
   @DeleteMapping("{id}")
-public Object delete(@PathVariable("id") Integer id) {
+public Object delete(@PathVariable("id") Long id) {
   Course entity = service.deleteEntity(id);
   ResponseDto responseDto = ResponseDto.builder()
       .timestamp(new Date())

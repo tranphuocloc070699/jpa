@@ -14,7 +14,7 @@ import java.util.Optional;
 public class PostDataAccess {
   private final PostRepository repository;
 
-  public Optional<Post> findById(Integer id) {
+  public Optional<Post> findById(Long id) {
     return repository.findById(id);
   }
 
@@ -26,7 +26,7 @@ public class PostDataAccess {
     return repository.findAll(pageable);
   }
 
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 }

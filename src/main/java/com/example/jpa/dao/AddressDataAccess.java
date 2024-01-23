@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AddressDataAccess {
   private final AddressRepository repository;
 
-  public Optional<Address> findById(Integer id) {
+  public Optional<Address> findById(Long id) {
     return repository.findById(id);
   }
 
@@ -26,7 +26,7 @@ public class AddressDataAccess {
     return repository.findAll(pageable);
   }
 
-  public void delete(Integer id) {
+  public void delete(Long id) {
     repository.deleteById(id);
   }
 }
