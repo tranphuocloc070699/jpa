@@ -1,6 +1,7 @@
 package com.example.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,7 +46,7 @@ public class Address {
     updatedAt = LocalDateTime.now();
   }
 
-
+  @JsonIgnore
   @OneToOne(mappedBy = "address")
   private User user;
 }
