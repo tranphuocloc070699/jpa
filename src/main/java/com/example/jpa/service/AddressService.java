@@ -1,13 +1,13 @@
 package com.example.jpa.service;
 
-import com.example.jpa.dao.AddressDataAccess;
-import com.example.jpa.dao.UserDataAccess;
+import com.example.jpa.model.Address;
+import com.example.jpa.mapper.AddressMapper;
 import com.example.jpa.dto.AddressDto;
+import com.example.jpa.dao.AddressDataAccess;
+import com.example.jpa.model.User;
+import com.example.jpa.dao.UserDataAccess;
 import com.example.jpa.exceptions.ConflictException;
 import com.example.jpa.exceptions.ResourceNotFoundException;
-import com.example.jpa.mapper.AddressMapper;
-import com.example.jpa.model.Address;
-import com.example.jpa.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,8 +53,6 @@ public class AddressService {
       modelExisted.setLocation(dto.getLocation());
       isUpdated=true;
     }
-
-
     if(!isUpdated) throw new ConflictException("Property not changing");
     dataAccess.save(modelExisted);
     return modelExisted;

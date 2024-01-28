@@ -21,9 +21,9 @@ public class PostService {
   private final PostDataAccess dataAccess;
   private final UserDataAccess userDataAccess;
   public Post createEntity(Long id,PostDto dto) {
-    User user = userDataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     Post entity = Post.builder().build();
     PostMapper.mapToEntity(entity, dto);
+    User user = userDataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     entity.setUser(user);
 
     return dataAccess.save(entity);

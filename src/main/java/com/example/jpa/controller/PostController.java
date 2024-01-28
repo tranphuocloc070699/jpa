@@ -1,10 +1,11 @@
 package com.example.jpa.controller;
 
 
-import com.example.jpa.dto.ResponseDto;
-import com.example.jpa.dto.PostDto;
 import com.example.jpa.model.Post;
+import com.example.jpa.dto.PostDto;
 import com.example.jpa.service.PostService;
+
+import com.example.jpa.dto.ResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

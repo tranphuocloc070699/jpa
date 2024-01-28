@@ -1,6 +1,4 @@
 package com.example.jpa.exceptions;
-
-
 import com.example.jpa.dto.ResponseDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

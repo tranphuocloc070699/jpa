@@ -2,9 +2,10 @@ package com.example.jpa.controller;
 
 
 import com.example.jpa.dto.AddressDto;
-import com.example.jpa.dto.ResponseDto;
-import com.example.jpa.model.Address;
 import com.example.jpa.service.AddressService;
+import com.example.jpa.model.Address;
+
+import com.example.jpa.dto.ResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

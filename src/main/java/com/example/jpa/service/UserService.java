@@ -23,21 +23,16 @@ public class UserService {
   public User createEntity(UserDto dto) {
     User entity = User.builder().build();
     UserMapper.mapToEntity(entity, dto);
-
     return dataAccess.save(entity);
   }
 
 
   public Page<User> fetchEntities(int currentPage,int pageSize ,String sortBy, String sortDir) {
     Sort sort = Sort.by(sortBy);
-
     sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-
     Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sort);
-
     return dataAccess.findAll(pageable);
   }
-
 
   public User fetchEntity(Long id) {
     return dataAccess.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));

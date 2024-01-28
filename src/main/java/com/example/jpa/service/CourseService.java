@@ -70,7 +70,7 @@ public class CourseService {
     User userExisted = userDataAccess.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User","Id",id.toString()));
     modelExisted.getUsers().remove(userExisted);
     modelExisted.setUsers(modelExisted.getUsers());
-
+    dataAccess.save(modelExisted);
     return modelExisted;
   }
 
